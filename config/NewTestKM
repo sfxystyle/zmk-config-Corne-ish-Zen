@@ -26,16 +26,16 @@
                 base_layer {
                         label = "BASE";
 // -----------------------------------------------------------------------------------------
-// | ESC  |  Q  |  W  |  F  |  P  |  B  |     |  J  |  L  |  U  |  Y  |  ;  | DEL |
-// | BSPC |  A  |  R  |  S  |  T  |  G  |     |  M  |  N  |  E  |  I  |  O  |  '  |
-// | CTRL |  Z  |  X  |  C  |  D  |  V  |     |  K  |  H  |  ,  |  .  |  /  | GUI |
-//                | ALT | NUM | SHF/SPC |     | SHF/RET | NAV | TAB |
-//                          \-------------ADJ-------------/
+// | TAB  |  Q  |  W  |  E  |  R  |  T  |     |  Y  |  U  |  I  |  O  |  P  | BSPC |
+// | SHFT |  A  |  S  |  D  |  F  |  G  |     |  H  |  J  |  K  |  L  |  ;  |  '   |
+// | CTRL |  Z  |  X  |  C  |  V  |  B  |     |  N  |  M  |  ,  |  .  |  /  | GUI  |
+//                    | ALT | NUM | SPC |     | RET | NAV | ESC |
+//                              \---------ADJ---------/
                         bindings = <
-   &kp ESC   &kp Q &kp W &kp F &kp P &kp B    &kp J &kp L  &kp U     &kp Y   &kp SEMI &kp DEL
-   &kp BSPC  &kp A &kp R &kp S &kp T &kp G    &kp M &kp N  &kp E     &kp I   &kp O    &kp SQT
-   &kp LCTRL &kp Z &kp X &kp C &kp D &kp V    &kp K &kp H  &kp COMMA &kp DOT &kp FSLH &kp LGUI
-      &kp LALT &mo LYR_NUM &mt LSHFT SPACE    &mt RSHFT RET &mo LYR_NAV &kp TAB
+   &kp TAB   &kp Q &kp W &kp E &kp R &kp T    &kp Y &kp U  &kp I     &kp O   &kp P    &kp BSPC
+   &kp LSHFT &kp A &kp S &kp D &kp F &kp G    &kp H &kp J  &kp K     &kp L   &kp SEMI &kp SQT
+   &kp LCTRL &kp Z &kp X &kp C &kp V &kp B    &kp N &kp M  &kp COMMA &kp DOT &kp FSLH &kp LGUI
+            &kp LALT &mo LYR_NUM &kp SPACE    &kp RET &mo LYR_NAV &kp ESC
                         >;
                 };
 
