@@ -1,6 +1,6 @@
 /*
 *
-* Copyright (c) 2021 Darryl deHaan
+* Copyright (c) 2021 lowprokb.ca
 * SPDX-License-Identifier: MIT
 *
 */
@@ -9,106 +9,75 @@
 #include <dt-bindings/zmk/keys.h>
 #include <dt-bindings/zmk/bt.h>
 
-#define LYR_BASE 0
-#define LYR_GAME 1
-#define LYR_NUM 2
-#define LYR_NAV 3
-#define LYR_ADJ 4
-
-&mt {
-        quick-tap-ms = <200>;
-};
+#define QWERTY 0
+#define GAMING 1
+#define NUMPAD 2
+#define NUMROW 3
+#define ADJUST 4
+#define CONFIG 5
 
 / {
         keymap {
                 compatible = "zmk,keymap";
 
-                base_layer {
-                        label = "BASE";
-// -----------------------------------------------------------------------------------------
-// | TAB  |  Q  |  W  |  E  |  R  |  T  |     |  Y  |  U  |  I  |  O  |  P  | BSPC |
-// | SHFT |  A  |  S  |  D  |  F  |  G  |     |  H  |  J  |  K  |  L  |  ;  |  '   |
-// | CTRL |  Z  |  X  |  C  |  V  |  B  |     |  N  |  M  |  ,  |  .  |  /  | GUI  |
-//                    | ALT | NUM | SPC |     | RET | NAV | ESC |
-//                              \---------ADJ---------/
+                default_layer {
+                        label = "QWERTY";
                         bindings = <
-   &kp TAB   &kp Q &kp W &kp E &kp R &kp T    &kp Y &kp U  &kp I     &kp O   &kp P    &kp BSPC
-   &kp LSHFT &kp A &kp S &kp D &kp F &kp G    &kp H &kp J  &kp K     &kp L   &kp SEMI &kp SQT
-   &kp LCTRL &kp Z &kp X &kp C &kp V &kp B    &kp N &kp M  &kp COMMA &kp DOT &kp FSLH &kp LGUI
-            &kp LALT &mo LYR_NUM &kp SPACE    &kp RET &mo LYR_NAV &kp ESC
+   &kp TAB   &kp Q &kp W &kp E &kp R &kp T    &kp Y &kp U &kp I    &kp O   &kp P    &kp BKSP
+   &kp LALT  &kp A &kp S &kp D &kp F &kp G    &kp H &kp J &kp K    &kp L   &kp QUOT &kp ENTER
+   &kp LSHFT &kp Z &kp X &kp C &kp V &kp B    &kp N &kp M &kp CMMA &kp DOT &kp FSLH &kp RSFT
+              &kp LGUI &kp LCTL &mo NUMROW    &kp SPC &mo ADJUST &kp F13
                         >;
                 };
 
-                game_layer {
-                        label = "GAME";
-// -----------------------------------------------------------------------------------------
-// | TAB  |  Q  |  W  |  E  |  R  |  T  |     |  Y  |  U  |  I  |  O  |  P  | BSPC |
-// | SHFT |  A  |  S  |  D  |  F  |  G  |     |  H  |  J  |  K  |  L  |  ;  |  '   |
-// | CTRL |  Z  |  X  |  C  |  V  |  B  |     |  N  |  M  |  ,  |  .  |  /  | GUI  |
-//                    | ALT | NUM | SPC |     | RET | NAV | ESC |
-//                              \---------ADJ---------/
+                gaming_layer {
+                        label = "GAMING";
                         bindings = <
-   &kp TAB   &kp Q &kp W &kp E &kp R &kp T    &kp Y &kp U  &kp I     &kp O   &kp P    &kp BSPC
-   &kp LSHFT &kp A &kp S &kp D &kp F &kp G    &kp H &kp J  &kp K     &kp L   &kp SEMI &kp SQT
-   &kp LCTRL &kp Z &kp X &kp C &kp V &kp B    &kp N &kp M  &kp COMMA &kp DOT &kp FSLH &kp LGUI
-            &kp LALT &mo LYR_NUM &kp SPACE    &kp RET &mo LYR_NAV &kp ESC
+   &kp TAB   &kp Q &kp W &kp E &kp R &kp T    &kp Y &kp U &kp I    &kp O   &kp P    &kp BKSP
+   &kp LALT  &kp A &kp S &kp D &kp F &kp G    &kp H &kp J &kp K    &kp L   &kp QUOT &kp ENTER
+   &kp LSHFT &kp Z &kp X &kp C &kp V &kp B    &kp N &kp M &kp CMMA &kp DOT &kp FSLH &kp RSFT
+               &kp LCTL &mo NUMROW &kp SPC    &kp SPC &mo ADJUST &kp F13
                         >;
                 };
 
-                number_layer {
-                        label = "NUM";
-// -----------------------------------------------------------------------------------------
-// |      | F1  | F2  | F3  | F4  | F5  |   | F6  | F7  | F8  | F9  | F10 |     |
-// |      |  1  |  2  |  3  |  4  |  5  |   |  6  |  7  |  8  |  9  |  0  |  `  |
-// |      | F11 | F12 |  [  |  ]  |     |   |     |  -  |  =  |  \  |     |     |
-//                    |     |     |     |   |     |     |     |
-                        bindings = <
-   &trans  &kp F1  &kp F2  &kp F3   &kp F4   &kp F5     &kp F6  &kp F7    &kp F8    &kp F9    &kp F10  &trans
-   &trans  &kp N1  &kp N2  &kp N3   &kp N4   &kp N5     &kp N6  &kp N7    &kp N8    &kp N9    &kp N0   &kp GRAVE
-   &trans  &kp F11 &kp F12 &kp LBKT &kp RBKT &trans     &trans  &kp MINUS &kp EQUAL &kp BSLH  &trans   &trans
-                             &trans  &trans  &trans     &trans  &trans    &trans
+                numpad_layer {
+                        label = "NUMPAD";
+                        bindings = < 
+   &kp TAB     &none &none &none &none &none    &kp KP_EQUAL    &kp KP_N7 &kp KP_N8 &kp KP_N9 &kp KP_MINUS &kp BSPC
+   &kp KP_NLCK &none &none &none &none &none    &kp KP_ASTERISK &kp KP_N4 &kp KP_N5 &kp KP_N6 &kp KP_PLUS  &none
+   &tog NUMPAD &none &none &none &none &none    &kp KP_SLASH    &kp KP_N1 &kp KP_N2 &kp KP_N3 &kp KP_ENTER &none
+              &mo CONFIG &kp LCTL &mo NUMROW    &kp SPC &kp KP_N0 &kp KP_DOT
                         >;
                 };
 
-                nav_layer {
-                        label = "NAV";
-// -----------------------------------------------------------------------------------------
-// |      |     | BACK| HOME| PGUP|     |   |     |     | UP  |     |     |      |
-// |      |     | FWD | END | PGDN|     |   |     | LT  | DN  | RT  |     |      |
-// |      |     |     |     |     |     |   |     |     |     |     |     |      |
-//                    |     |     |     |   |     |     |     |
+                numrow_layer {
+                        label = "NUMROW";
                         bindings = <
-   &trans  &trans  &kp C_AC_BACK    &kp HOME &kp PG_UP &trans      &trans  &trans   &kp UP   &trans    &trans  &trans
-   &trans  &trans  &kp C_AC_FORWARD &kp END  &kp PG_DN &trans      &trans  &kp LEFT &kp DOWN &kp RIGHT &trans  &trans
-   &trans  &trans  &trans           &trans   &trans    &trans      &trans  &trans   &trans   &trans    &trans  &trans
-                    	            &trans   &trans    &trans      &trans  &trans   &trans
+   &kp ESC   &kp N1 &kp N2 &kp N3    &kp N4    &kp N5       &kp N6   &kp N7   &kp N8 &kp N9    &kp N0   &kp DEL
+   &kp GRAVE &none  &none  &kp PSCRN &kp MINUS &kp EQUAL    &kp LEFT &kp DOWN &kp UP &kp RIGHT &kp SEMI &none
+   &none     &none  &none  &kp BSLH  &kp LBKT  &kp RBKT     &none    &none    &none  &none     &none    &none 
+                          &mo CONFIG &kp LCTL &mo NUMROW    &kp SPC &mo ADJUST &kp F13
                         >;
                 };
 
                 adjust_layer {
                         label = "ADJUST";
-// -----------------------------------------------------------------------------------------
-// | RESET|     |     |     |     |     |   |BASE |VL_UP|PREV |BR_UP|     |      |
-// | BTCLR| BT1 | BT2 | BT3 | BT4 | BT5 |   |GAME |VL_DN|NEXT |BR_DN|     |      |
-// | CAPS |     |     |     |     |     |   |     |MUTE | P/P |     |     |      |
-//                    |     |     |     |   |     |     |     |
                         bindings = <
-   &reset     &trans       &trans       &trans       &trans       &trans         &to LYR_BASE &kp C_VOL_UP &kp C_PREV &kp C_BRI_UP &trans  &trans
-   &bt BT_CLR &bt BT_SEL 0 &bt BT_SEL 1 &bt BT_SEL 2 &bt BT_SEL 3 &bt BT_SEL 4   &to LYR_GAME &kp C_VOL_DN &kp C_NEXT &kp C_BRI_DN &trans  &trans
-   &kp CAPS   &trans       &trans       &trans       &trans       &trans         &trans       &kp C_MUTE   &kp C_PP   &trans  &trans  &trans
-                          	        &trans       &trans       &trans         &trans       &trans  &trans
+   &kp F1      &kp F2  &kp F3   &kp F4    &kp F5 &kp F6    &kp F7   &kp F8   &kp F9 &kp F10   &kp F11 &kp F12
+   &kp CAPS    &kp INS &kp HOME &kp PG_UP &none  &none     &kp LEFT &kp DOWN &kp UP &kp RIGHT &none   &none
+   &tog NUMPAD &kp DEL &kp END  &kp PG_DN &none  &none     &none    &none    &none  &none     &none   &none
+                           &kp LGUI &kp LCTL &mo NUMROW    &kp SPC &mo ADJUST &tog GAMING
                         >;
                 };
 
+                config_layer {
+                        label = "CONFIG";
+                        bindings = <
+   &reset     &none        &none        &none        &none        &none           &none &none &none &none &none &none 
+   &bt BT_CLR &bt BT_SEL 0 &bt BT_SEL 1 &bt BT_SEL 2 &bt BT_SEL 3 &bt BT_SEL 4    &none &none &none &none &none &none
+   &none      &none        &none        &none        &none        &none           &none &none &none &none &none &none
+                                                &mo CONFIG &kp LCTL &mo NUMROW    &kp SPC &mo ADJUST &kp F13
+                        >;
+                };
         };
-};
-
-/ {
-    conditional_layers {
-        compatible = "zmk,conditional-layers";
-        tri_layer {
-            if-layers = <LYR_NUM LYR_NAV>;
-            then-layer = <LYR_ADJ>;
-        };
-    };
 };
